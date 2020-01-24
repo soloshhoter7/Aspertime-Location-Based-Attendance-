@@ -1,9 +1,0 @@
-td{
-    padding-left: 20px;
-}
-@media screen and (max-width:768px){
-    td{
-        padding-left:12px;
-    }
-
-}
