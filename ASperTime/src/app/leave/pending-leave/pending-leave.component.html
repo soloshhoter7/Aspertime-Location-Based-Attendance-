@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+        <table>
+            <tbody>
+                <tr style="padding-left: 10px">
+                    <td><button style="background:none; border:none;" (click)="toggleCard()"><img src="../assets/icons/expand-button.png" alt="" style="width: 20px; height:20px;"></button></td>
+                    <td>{{ Leave.LeaveSubject }}</td>
+                    <td style="color:teal">{{ Leave.LeaveType }}</td>
+                    <td style="color:tomato">{{ Leave.DateInString }}</td>
+                    <td > <div style="padding:5px;border-radius:5px;color:white"
+                        [ngStyle]="Leave.ApprovalStatus==='Approved' && {'background-color':'teal'}  || Leave.ApprovalStatus==='Pending' && {'background-color':'yellow' , 'color':'black'} || Leave.ApprovalStatus === 'Denied' && {'background-color':'tomato'}">
+                        {{Leave.ApprovalStatus}}
+                    </div> 
+                        </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-body" *ngIf="toggleStatus">
+        <table>
+           <tr>
+               <button class="btn btn-danger" (click)="CancelLeave()">Cancel</button>
+           </tr>
+        </table>
+    </div>
+</div>

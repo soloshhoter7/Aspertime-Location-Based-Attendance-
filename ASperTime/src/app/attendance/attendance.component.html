@@ -1,0 +1,43 @@
+<body>
+  <div class="container-fluid">
+    <div class="row" style="background-image: url('../assets/dashboard-wallpaper.png')">
+      <div class="col-sm-6">
+        <div class="button-area">
+          <button class="btn btn-success" (click)="onPunchIn()" [disabled]="!PunchInAvailable">
+            Punch In <span class="a" *ngIf="PunchInTimeDisplay">{{ PunchInTime }}</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="button-area">
+          <button class="btn btn-success" (click)="onPunchOut()" [disabled]="!PunchOutAvailable">
+            Punch Out <span class="a" *ngIf="PunchOutTimeDisplay">{{PunchOutTime}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="padding:0;margin:0;">
+            <agm-map [latitude]="29.2110625" [longitude]="77.0142694" [zoom]="15">
+                <agm-marker  [latitude]="29.211163" [longitude]="77.016320" [iconUrl] ="
+                {
+                  url:'../assets/icons/005-work.png',
+                  scaledSize: {
+                    width: 60,
+                    height: 60
+                }
+                  }"> </agm-marker>
+                <agm-marker  [latitude]="CurrentLocationLat" [longitude]="CurrentLocationLong" 
+                [iconUrl] =
+               "{
+                  url:'../assets/icons/004-location.png',
+                  scaledSize: {
+                    width: 60,
+                    height: 60
+                }
+                  }"  [animation]="'BOUNCE'"></agm-marker>
+                </agm-map>
+        </div>
+      </div>
+  </div>
+</body>
