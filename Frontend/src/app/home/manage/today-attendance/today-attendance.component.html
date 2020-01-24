@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-header">
+        <table>
+            <tbody>
+                <tr>
+                    <td><button style="background:none; border:none;" (click)="toggleCard()"><img src="../assets/icons/expand-button.png" alt="" style="width: 20px; height:20px;"></button></td>
+                    <td>{{ attendance.employee.name }}</td>
+                    <td style="color:teal">{{ attendance.PunchIn }}</td>
+                    <td style="color:tomato">{{ attendance.PunchOut }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-body" *ngIf="toggleStatus">
+        <table>
+            <tr>
+                <th>Employee Id</th>
+                <th>Email</th>
+            </tr>
+            <tr>
+                <td>
+                    {{attendance.employee.userid}}
+                </td>
+                <td>
+                    {{attendance.employee.Email}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

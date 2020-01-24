@@ -1,0 +1,194 @@
+<div class="container">
+    <!-- for login form  -->
+    <form (ngSubmit)='onSubmit()' #f="ngForm" *ngIf="loginStatus">
+        <div class="row" *ngIf="incorrectDetails" style="margin-bottom: 20px; margin-top:10px;">
+            <div class="col">
+                <p *ngIf="!incorrectDetails"> </p>
+                <span class="help-block"
+                    style="padding:8px;padding-top:10px;padding-bottom:10px;border: 1.5px solid red;border-radius: 5px;background-color: #edf2f8; color: red"
+                    *ngIf="incorrectDetails"> Incorrect Login or Password </span>
+            </div>
+        </div>
+        <div class="row" *ngIf="usernameStatus" style="margin-bottom: 20px; margin-top:10px;">
+                <div class="col">
+                    <span class="help-block"
+                        style="padding:10px;border: 1.5px solid red;border-radius: 5px;background-color: #edf2f8; color: red"
+                        *ngIf="usernameStatus"> Username Already Exists </span>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="">
+                    <input type="text" class="form-control" id="username" minlength ="5" maxlength ="16" style="margin-bottom:10px"
+                        placeholder="Username" ngModel name="username" required #username="ngModel">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="">
+                    <input type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,10}$" class="form-control" id="password" placeholder="Password" ngModel
+                        style="margin-bottom:10px" name="password" required #password="ngModel">
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!registerLoginStatus" style="margin-bottom: 5px" >
+            <div class="col"> 
+                <input type="checkbox" name="stayLoggedIn" [(ngModel)]="stayLoggedIn"style="padding:0;width:auto"> Stay Logged In
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 1px">
+            <div class="col">
+                <div class="form-group" *ngIf="registerLoginStatus">
+                    <input type="password" class="form-control" id="retypePassword" placeholder="Retype Password"
+                        ngModel style="margin-bottom:20px" name="retypePassword" required #retypePassword="ngModel">
+                    <span class="help-block" style="margin-top: 10px"
+                        *ngIf="!retypePassword.valid&&retypePassword.touched">
+                    </span>
+
+                    <span class="help-block"
+                        style="padding:10px;border: 1.5px solid red;border-radius: 5px;background-color: #edf2f8; margin-top:10px;color:red"
+                        *ngIf="retypePassword.valid&&retypePasswordStatus">
+                        Passwords doesn't match
+                    </span>
+                    <hr id="hr2">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div>
+                    <button type="submit" class="btn btn-primary" *ngIf="!registerLoginStatus" class="btn btn-primary"
+                        [disabled]="!f.valid">Sign In</button>
+                    <button [disabled]="!f.valid" *ngIf="registerLoginStatus"
+                        (click)="CheckUsername()">Register</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div *ngIf="registerStatus">
+                    <p class="message">Not registered? <a (click)="onRegister()">Create an account</a></p>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Registering a user -->
+<div class="container">
+    <form (ngSubmit)='onSubmitRegister()' #r="ngForm" *ngIf="!loginStatus">
+        <div class="row">
+            <label>
+                <p style="font-size:20px">Enter Personal Details</p>
+            </label>
+        </div>
+        
+        <div class="row" style="margin-bottom:20px;" *ngIf="CheckNameStatus">
+            <div class="col">
+                <span class="help-block" id="EmailValid" *ngIf="CheckNameStatus"
+                    style="padding:6px; border: 1px solid red;border-radius: 5px;background-color: #edf2f8">
+                    Enter Valid Details </span>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:20px;" *ngIf="!EmailValid">
+            <div class="col">
+                <span class="help-block" id="EmailValid" *ngIf="!EmailValid"
+                    style="padding:5px; border: 1px solid red;border-radius: 5px;background-color: #edf2f8">
+                    Email Address Already Exists </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="employee.name"
+                        name="name" required #name="ngModel" maxlength = "30"></div>
+
+            </div>
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <input type="text" pattern="[a-zA-Z0-9_.+-]{1,20}@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|piet|yahoo|hotmail)\.([a-z]{2,4})(\.[a-z]{2,4})?$" class="form-control" id="Email" placeholder="Enter your Email Address"
+                        [(ngModel)]="employee.Email" name="Email" required #Email="ngModel" maxlength = "40"></div>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <select id="gender" class="form-control" [(ngModel)]="employee.Gender" name="Gender" type="text"
+                        required>
+                        <option value="Gender">Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="Mobile" placeholder="Mobile Number" pattern="\d*" minlength="10" maxlength="10"
+                        [(ngModel)]="employee.MobileNo" name="MobileNo" required #Mobile="ngModel" required></div>
+
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <select id="department" class="form-control" [(ngModel)]="employee.Department" name="Department"
+                        type="text" required>
+                        <option value="Department">Department</option>
+                        <option value="CSE">CSE</option>
+                        <option value="IT">IT</option>
+                        <option value="ECE">ECE</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+
+                <div class="form-group">
+                    <select id="designation" class="form-control" [(ngModel)]="employee.Designation" name="Designation"
+                        type="text" required>
+                        <option value="Designation">Designation</option>
+                        <option value="Professor">Professor</option>
+                        <option value="Associate_Professor">Associate Professor</option>
+                        <option value="Assistant_Professor">Assistant Professor</option>
+                    </select>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <p style="font-size: 12px;margin-bottom:0;">All fields are mandatory
+                </p>
+
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <hr id="hr1">
+                <button type="submit" class="btn btn-primary" [disabled]="!r.valid&&EmailValid">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

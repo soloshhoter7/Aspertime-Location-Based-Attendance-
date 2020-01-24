@@ -1,0 +1,130 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="leave">
+                    <form (ngSubmit)='checkLeaveDetails()' #l="ngForm">
+                        <h2>Apply Leave</h2>
+                        <hr>
+                        <div class="row" *ngIf="checkDateStatus" style="margin-bottom: 20px; margin-top:10px;">
+                            <div class="col">
+                                <span class="help-block"
+                                    style="padding:10px;border: 1.5px solid red;border-radius: 5px;background-color: #edf2f8; color: red"
+                                    *ngIf="checkDateStatus"> Enter a Valid Date </span>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="MonthlyScoreStatus" style="margin-bottom: 20px; margin-top:10px;">
+                                <div class="col">
+                                    <span class="help-block"
+                                        style="padding:10px;border: 1.5px solid red;border-radius: 5px;background-color: #edf2f8; color: red"
+                                        *ngIf="MonthlyScoreStatus"> Cannot apply casual leave </span>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="">Leave Subject</label>
+                                <input type="text" class="form-control" id="LeaveSubject"
+                                    placeholder="Enter Leave Subject" name="LeaveSubject"
+                                    [(ngModel)]="leave.LeaveSubject" #LeaveSubject="ngModel" maxlength="40" required></div>
+                            <div class="col-sm-6">
+                                <label for="">Date</label>
+                                <input type="date" class="form-control" id="Date" name="Date" [(ngModel)]="leave.Date"
+                                    #Date="ngModel" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="">Leave Type</label>
+                                <select id="LeaveType" class="form-control" name="LeaveType" type="text"
+                                    [(ngModel)]="leave.LeaveType" required>
+                                    <option value="A">Select Leave Type</option>
+                                    <option value="EL">Earned Leave</option>
+                                    <option value="CL">Casual Leave</option>
+                                    <option value="ML">Medical Leave</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col">
+                                <label for="">Leave Reason</label>
+                                <textarea rows="7" cols="50" name="LeaveReason" class="form-control"
+                                    placeholder="Enter the Leave Reason here" [(ngModel)]="leave.LeaveReason"
+                                    #LeaveReason="ngModel" maxlength="250" required></textarea>
+                            </div>
+                        </div>
+                        <hr id="hr1">
+                        <div class="row">
+                            <div class="col"> <button type="submit" class="btn btn-primary"
+                                    [disabled]="!l.valid">Submit</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                
+                <div class="leave">
+                    <table class="table">
+                        <thead>
+                            <th>
+                                <h4>Monthly Leave Score</h4>
+                            </th>
+                            <th>
+                                <h4>:</h4>
+                            </th>
+                            <th>
+                                <h4>{{LeaveScore}}</h4>
+                            </th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Earned Leaves</td>
+                                <td>:</td>
+                                <td>{{employee.EL}}</td>
+                            </tr>
+                            <tr>
+                                <td>Casual Leaves</td>
+                                <td>:</td>
+                                <td>{{employee.CL}}</td>
+                            </tr>
+                            <tr>
+                                <td>Medical Leave</td>
+                                <td>:</td>
+                                <td>{{employee.ML}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="leave-approvals leave">
+                    <h3> Leave Approvals</h3>
+                    <!-- <table class="table table-stripped ">
+                        <thead>
+                            <tr class="row">
+                                <th class="col">Leave Subject</th>
+                                <th class="col">LeaveType </th>
+                                <th class="col">Date</th>
+                                <th class="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="row" *ngFor="let leave of leaves">
+                                <td class="col">{{leave.LeaveSubject}}</td>
+                                <td class="col">{{leave.LeaveType}}</td>
+                                <td class="col">{{leave.DateInString}}</td>
+                                <td class="col" 
+                                [ngStyle]="leave.ApprovalStatus==='Approved' && {'background-color':'#43A047'}  || leave.ApprovalStatus==='Pending' && {'background-color':'#ffff31'} || leave.ApprovalStatus === 'Denied' && {'background-color':'#ba0b32'}" 
+                                >{{leave.ApprovalStatus}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table> -->
+                    <hr>
+                    <app-pending-leave *ngFor="let leave of leaves"
+                [Leave]="leave"></app-pending-leave>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>

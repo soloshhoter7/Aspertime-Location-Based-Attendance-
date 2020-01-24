@@ -1,0 +1,78 @@
+
+        <form (ngSubmit)="UpdateInfo()" #r="ngForm" >
+                <label>
+                    <p style="font-size:20px">Update Personal Details</p>
+                </label>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                    <label>Name<sup>*</sup></label>
+                                    <input type="text" class="form-control" id="name" placeholder="Name" [(ngModel)]="employee.name"
+                                        name="name" required #name="ngModel" disabled></div>
+                            </th>
+                            <th width="275px">
+                                <div class="form-group" style="margin-left:10px">
+                                        <label>Email</label>
+                                    <input type="text" class="form-control" id="Email" placeholder="Enter your Email Address"
+                                        [(ngModel)]="employee.Email" name="Email" required #Email="ngModel" pattern="[a-zA-Z0-9_.+-]{1,20}@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail|piet|yahoo|hotmail)\.([a-z]{2,4})(\.[a-z]{2,4})?$"></div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="form-group">
+                                        <label>Gender<sup>*</sup></label>
+                                    <select id="gender" class="form-control" [(ngModel)]="employee.Gender" name="Gender"
+                                        type="text" disabled>
+                                        <option value="Gender">Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group" style="margin-left:10px">
+                                        <label>Mobile Number</label>
+                                    <input type="text" class="form-control" id="Mobile" placeholder="Mobile Number"
+                                        [(ngModel)]="employee.MobileNo" name="MobileNo" required #Mobile="ngModel" pattern="\d*" maxlength="10"></div>
+                            </th>
+                        </tr>
+            
+                        <tr>
+                            <th>
+                                <div class="form-group" >
+                                        <label>Department<sup>*</sup></label>
+                                    <select id="department" class="form-control" [(ngModel)]="employee.Department" name="Department"
+                                        type="text" disabled>
+                                        <option value="Department">Department</option>
+                                        <option value="CSE">CSE</option>
+                                        <option value="IT">IT</option>
+                                        <option value="ECE">ECE</option>
+                                    </select>
+                                </div>
+                            </th>
+                            <th>
+                                <div class="form-group" style="margin-left:10px">
+                                        <label>Desgination<sup>*</sup></label>
+                                    <select id="Designation" class="form-control" [(ngModel)]="employee.Designation" name="Designation"
+                                        type="text" disabled>
+                                        <option value="Designation">Designation</option>
+                                        <option value="Professor">Professor</option>
+                                        <option value="Associate_Professor">Associate Professor</option>
+                                        <option value="Assistant_Professor">Assistant Professor</option>
+                                    </select>
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                           <td></td>
+                           <td> <p style="font-size: 12px;margin-left:95px;margin-bottom:0;"><sup>*</sup>these fields are not updatable</p></td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <hr id="hr1">
+                <button type="submit" class="btn btn-primary" [disabled]="!r.valid">Update</button>
+            </form>
+

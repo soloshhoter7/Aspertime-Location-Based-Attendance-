@@ -1,0 +1,122 @@
+ body {
+    background-color: #f2f2f2;
+  }
+  .profile-box{
+    border-radius: 20px;
+    height:278px;
+    width: 205px;
+    background-color:white;
+    padding: 10px;
+    margin-left: auto;
+    margin-right:auto;
+  }
+  tr{
+    border:none;
+  }
+ table{
+     border:none;
+     font-size: 16px;
+     font-family: 'Roboto Mono', monospace;
+     align-content: center;
+     height:auto;
+     width: auto;
+     background-color: white;
+     margin: 2%;
+     border-radius: 5%;
+     padding:30px;
+ }
+ th{
+  padding:5px;
+  padding-right: 10px;
+ }
+ td{
+     padding:5px;
+     
+ }
+ .user-image{
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:10px;
+    height:170px;
+    width:170px;
+    border-radius: 50%;
+  }
+
+button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    margin-top: 8px;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    padding-top:1px;
+    padding-bottom:1px;
+  }
+  h2{
+      margin-left: 20px;
+      margin-top: 14px;
+      color:#28231d;
+  }
+  hr{
+    display: block; height: 1px;
+    border: 0; border-top: 1px solid#4CAF50;
+    margin: 1em 0; padding: 0;
+    width:65%;
+    margin-left: 10px;
+  }
+
+  .attendance-table{
+    border-radius: 3%; 
+    width: 600px;
+    height: auto;
+    background-color:white;
+    padding: 20px;
+    margin-left: 20px;
+  }
+ 
+  .oddBackground{
+    background-color:#91cb7d;
+    color:white;
+  }
+  .AttendanceTuple{
+    padding-right: 55px;
+  }
+   #update-table{
+      width:auto;
+      height:auto;
+      padding: 10px;
+      padding-bottom:7px;
+      color:#1a2228;
+   }
+   #update-button{
+    border:2px solid #4CAF50;
+    color:#4CAF50;
+    background: none;
+    width:85px;
+    margin-left:90px;
+  }
+ .profile-card{
+  border-radius: 20px;
+  height:auto;
+  width: auto;
+  background-color:white;
+  margin-left: 0;
+ }
+ @media(max-width:768px){
+   .profile-card{
+     margin-top: 20px;
+   }
+   .profile-box{
+     margin-left:15px;
+   }
+   .attendance-table{
+     margin-left: 0;
+   }
+ }
